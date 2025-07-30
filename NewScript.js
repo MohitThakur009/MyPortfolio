@@ -214,3 +214,55 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(document.querySelector('.skills'));
     }
 });
+// Download cv button js
+
+ document.addEventListener('DOMContentLoaded', function() {
+    const downloadBtn = document.getElementById('downloadCvBtn');
+    const downloadStatus = document.getElementById('downloadStatus');
+
+    // Path to your CV file (update this to your actual file path)
+    const cvFilePath = 'C:/Users/thaku/Downloads/Mohit-Thakur-Resume.pdf';
+    // The name you want the downloaded file to have
+    const cvFileName = 'Mohit-Thakur-Resume.pdf';
+
+    downloadBtn.addEventListener('click', function() {
+        downloadFile(cvFilePath, cvFileName);
+    });
+
+    function downloadFile(filePath, fileName) {
+        // Show loading state
+        downloadBtn.disabled = true;
+        downloadBtn.innerHTML = '<span class="download-icon">⏳</span> Preparing Download...';
+
+        // Create a temporary anchor element
+        const a = document.createElement('a');
+        a.href = filePath;
+        a.download = fileName;
+        a.style.display = 'none';
+        
+        // Append to body and trigger click
+        document.body.appendChild(a);
+        a.click();
+        
+        // Clean up
+        document.body.removeChild(a);
+    
+        setTimeout(() => {
+            downloadBtn.disabled = false;
+            downloadBtn.innerHTML = '<span class="download-icon">↓</span> Download My CV';
+            
+            // Show success message (in a real scenario, this would depend on actual success)
+            showStatusMessage('CV downloaded successfully!', 'success');
+            
+            // Hide message after 4 seconds
+            setTimeout(() => {
+                downloadStatus.classList.remove('visible');
+            }, 4000);
+        }, 1500);
+    }
+
+    function showStatusMessage(message, type) {
+        downloadStatus.textContent = message;
+        downloadStatus.className = 'download-status visible ' + type;
+    }
+});
