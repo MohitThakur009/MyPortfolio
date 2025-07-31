@@ -221,9 +221,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const downloadStatus = document.getElementById('downloadStatus');
 
     // Path to your CV file (update this to your actual file path)
-    const cvFilePath = 'Mohit-Thakur-Resume.pdf';
+    const cvFilePath = 'Mohit-Thakur-cv(2).pdf';
     // The name you want the downloaded file to have
-    const cvFileName = 'Mohit-Thakur-Resume.pdf';
+    const cvFileName = 'Mohit-Thakur-cv(2).pdf';
 
     downloadBtn.addEventListener('click', function() {
         downloadFile(cvFilePath, cvFileName);
